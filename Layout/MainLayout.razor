@@ -1,0 +1,49 @@
+﻿
+@inherits LayoutComponentBase
+
+
+@inject ISnackbar Snackbar
+
+<MudThemeProvider IsDarkMode="@IsDarkTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="0">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudSpacer />
+        <!-- THEME BUTTON -->
+        <MudIconButton Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => ThemeToggle())" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
+        <MudDrawerHeader>
+            <MudText Typo="Typo.h6">WOO</MudText>
+        </MudDrawerHeader>
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+            @Body
+    </MudMainContent>   
+</MudLayout>
+
+@code {
+
+    string? toastConnectionId;
+
+    bool _drawerOpen = true;
+    bool IsDarkTheme = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+    void ThemeToggle()
+    {
+        IsDarkTheme ^= true;
+    }
+
+
+
+
+
+}
